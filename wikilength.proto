@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package wikilength;
+
+service WikiLength {
+  rpc CalculateLength (LengthRequest) returns (LengthResponse) {}
+}
+
+message LengthRequest {
+  string request_id = 1;
+  string url1 = 2;
+  string url2 = 3;
+}
+
+message LengthResponse {
+  enum QueryStatus {
+    PENDING = 0;
+    ERROR = 1;
+    OK = 2;
+  }
+  QueryStatus status = 1;
+  string request_id = 2;
+  bytes payload = 3;
+}
